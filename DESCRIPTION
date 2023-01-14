@@ -9,6 +9,7 @@ Description: R interface to a high-performance implementation of k-Mediods clust
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
+SystemRequirements: C++14
 RoxygenNote: 7.2.2
 Suggests: 
     testthat (>= 3.0.0)
