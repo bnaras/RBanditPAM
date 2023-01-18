@@ -2,7 +2,7 @@
 #define HEADERS_ALGORITHMS_PAM_HPP_
 
 #include <omp.h>
-#include <armadillo>
+#include <RcppArmadillo.h>
 #include <vector>
 #include <fstream>
 #include <iostream>

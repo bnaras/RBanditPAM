@@ -2,7 +2,7 @@
 #define HEADERS_ALGORITHMS_KMEDOIDS_ALGORITHM_HPP_
 
 #include <omp.h>
-#include <armadillo>
+#include <RcppArmadillo.h>
 #include <vector>
 #include <fstream>
 #include <iostream>

@@ -12,7 +12,7 @@
 
 #include "fastpam1.hpp"
 
-#include <armadillo>
+#include <RcppArmadillo.h>
 #include <unordered_map>
 
 namespace km {

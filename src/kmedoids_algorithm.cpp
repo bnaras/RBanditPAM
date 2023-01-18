@@ -6,7 +6,7 @@
  */
 
 #include <omp.h>
-#include <armadillo>
+#include <RcppArmadillo.h>
 #include <unordered_map>
 #include <regex>
 

@@ -10,7 +10,7 @@
 
 #include "pam.hpp"
 
-#include <armadillo>
+#include <RcppArmadillo.h>
 #include <unordered_map>
 
 namespace km {
