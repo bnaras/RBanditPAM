@@ -24,3 +24,73 @@
     .Call('_BanditPAM_KMedoids__get_medoids_final', PACKAGE = 'BanditPAM', xp)
 }
 
+#' Return the number of medoids property k
+#'
+#' @param xp the km::KMedoids Object XPtr
+.KMedoids__get_k <- function(xp) {
+    .Call('_BanditPAM_KMedoids__get_k', PACKAGE = 'BanditPAM', xp)
+}
+
+#' Set the number of medoids property k
+#'
+#' @param xp the km::KMedoids Object XPtr
+.KMedoids__set_k <- function(xp, k) {
+    invisible(.Call('_BanditPAM_KMedoids__set_k', PACKAGE = 'BanditPAM', xp, k))
+}
+
+#' Return the max_iter property
+#'
+#' @param xp the km::KMedoids Object XPtr
+.KMedoids__get_max_iter <- function(xp) {
+    .Call('_BanditPAM_KMedoids__get_max_iter', PACKAGE = 'BanditPAM', xp)
+}
+
+#' Set the max_iter property
+#'
+#' @param xp the km::KMedoids Object XPtr
+.KMedoids__set_iter <- function(xp, m) {
+    invisible(.Call('_BanditPAM_KMedoids__set_max_iter', PACKAGE = 'BanditPAM', xp, m))
+}
+
+#' Return the build_conf property
+#'
+#' @param xp the km::KMedoids Object XPtr
+.KMedoids__get_build_conf <- function(xp) {
+    .Call('_BanditPAM_KMedoids__get_build_conf', PACKAGE = 'BanditPAM', xp)
+}
+
+#' Set the build_conf property
+#'
+#' @param xp the km::KMedoids Object XPtr
+.KMedoids__set_iter <- function(xp, bc) {
+    invisible(.Call('_BanditPAM_KMedoids__set_build_conf', PACKAGE = 'BanditPAM', xp, bc))
+}
+
+#' Return the swap_conf property
+#'
+#' @param xp the km::KMedoids Object XPtr
+.KMedoids__get_swap_conf <- function(xp) {
+    .Call('_BanditPAM_KMedoids__get_swap_conf', PACKAGE = 'BanditPAM', xp)
+}
+
+#' Set the swap_conf property
+#'
+#' @param xp the km::KMedoids Object XPtr
+.KMedoids__set_iter <- function(xp, bc) {
+    invisible(.Call('_BanditPAM_KMedoids__set_swap_conf', PACKAGE = 'BanditPAM', xp, bc))
+}
+
+#' Return the loss_fn property
+#'
+#' @param xp the km::KMedoids Object XPtr
+.KMedoids__get_loss_fn <- function(xp) {
+    .Call('_BanditPAM_KMedoids__get_loss_fn', PACKAGE = 'BanditPAM', xp)
+}
+
+#' Set the loss_fn property
+#'
+#' @param xp the km::KMedoids Object XPtr
+.KMedoids__set_loss_fn <- function(xp, loss_fn) {
+    invisible(.Call('_BanditPAM_KMedoids__set_loss_fn', PACKAGE = 'BanditPAM', xp, loss_fn))
+}
+

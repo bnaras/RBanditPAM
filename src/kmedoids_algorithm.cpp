@@ -128,7 +128,8 @@ void KMedoids::setSwapConfidence(size_t newSwapConfidence) {
 
 void KMedoids::setSeed(size_t newSeed) {
   seed = newSeed;
-  arma::arma_rng::set_seed(seed);
+  // In RcppArmadillo, the seed is set in R via set.seed(seed)!
+  // arma::arma_rng::set_seed(seed);
 }
 
 size_t KMedoids::getSeed() const {
