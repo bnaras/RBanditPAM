@@ -185,10 +185,10 @@ void KMedoids::calcBestDistancesSwap(
   const bool swapPerformed) {
   #pragma omp parallel for
   for (size_t i = 0; i < data.n_cols; i++) {
-    float best = std::numeric_limits<float>::infinity();
-    float second = std::numeric_limits<float>::infinity();
+    double best = std::numeric_limits<double>::infinity();
+    double second = std::numeric_limits<double>::infinity();
     for (size_t k = 0; k < medoidIndices->n_cols; k++) {
-      float cost = KMedoids::cachedLoss(data, i, (*medoidIndices)(k));
+      double cost = KMedoids::cachedLoss(data, i, (*medoidIndices)(k));
       if (cost < best) {
         (*assignments)(i) = k;
         second = best;
@@ -207,16 +207,16 @@ void KMedoids::calcBestDistancesSwap(
   }
 }
 
-float KMedoids::calcLoss(
+double KMedoids::calcLoss(
   const arma::mat& data,
   const arma::urowvec* medoidIndices) {
-  float total = 0;
+  double total = 0;
   // TODO(@motiwari): is this parallel loop accumulating properly?
   #pragma omp parallel for
   for (size_t i = 0; i < data.n_cols; i++) {
-    float cost = std::numeric_limits<float>::infinity();
+    double cost = std::numeric_limits<double>::infinity();
     for (size_t k = 0; k < nMedoids; k++) {
-      float currCost = KMedoids::cachedLoss(data, i, (*medoidIndices)(k));
+      double currCost = KMedoids::cachedLoss(data, i, (*medoidIndices)(k));
       if (currCost < cost) {
         cost = currCost;
       }
@@ -228,7 +228,7 @@ float KMedoids::calcLoss(
   return total/data.n_cols;
 }
 
-float KMedoids::cachedLoss(
+double KMedoids::cachedLoss(
   const arma::mat& data,
   const size_t i,
   const size_t j,
@@ -261,31 +261,31 @@ void KMedoids::checkAlgorithm(const std::string& algorithm) const {
   }
 }
 
-float KMedoids::getAverageLoss() const {
+double KMedoids::getAverageLoss() const {
   return averageLoss;
 }
 
-float KMedoids::LP(const arma::mat& data,
+double KMedoids::LP(const arma::mat& data,
   const size_t i,
   const size_t j) const {
   return arma::norm(data.col(i) - data.col(j), lp);
 }
 
-float KMedoids::LINF(
+double KMedoids::LINF(
   const arma::mat& data,
   const size_t i,
   const size_t j) const {
   return arma::max(arma::abs(data.col(i) - data.col(j)));
 }
 
-float KMedoids::cos(const arma::mat& data,
+double KMedoids::cos(const arma::mat& data,
   const size_t i,
   const size_t j) const {
   return 1 - (arma::dot(data.col(i), data.col(j))
     / (arma::norm(data.col(i)) * arma::norm(data.col(j))));
 }
 
-float KMedoids::manhattan(const arma::mat& data,
+double KMedoids::manhattan(const arma::mat& data,
   const size_t i,
   const size_t j) const {
   return arma::accu(arma::abs(data.col(i) - data.col(j)));

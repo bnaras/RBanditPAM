@@ -188,13 +188,13 @@ class KMedoids {
    *
    * @throws If no clustering has been run yet
    */
-  float getAverageLoss() const;
+  double getAverageLoss() const;
 
   /// The cache will be of size cacheMultiplier*nlogn
   size_t cacheMultiplier = 1000;
 
   /// The cache which stores pairwise distance computations
-  float* cache;
+  double* cache;
 
   /// The permutation in which to sample the reference points
   arma::uvec permutation;
@@ -241,7 +241,7 @@ class KMedoids {
    * @returns The average loss, i.e., the average distance from each point to its
    * nearest medoid
    */
-  float calcLoss(
+  double calcLoss(
     const arma::mat& data,
     const arma::urowvec* medoidIndices);
 
@@ -258,7 +258,7 @@ class KMedoids {
    * 
    * @returns The distance between points i and j
    */
-  float cachedLoss(
+  double cachedLoss(
     const arma::mat& data,
     const size_t i,
     const size_t j,
@@ -277,7 +277,7 @@ class KMedoids {
    * 
    * @returns The Lp distance between points i and j
    */
-  float LP(
+  double LP(
     const arma::mat& data,
     const size_t i,
     const size_t j) const;
@@ -292,7 +292,7 @@ class KMedoids {
    * 
    * @returns The L-infinity distance between points i and j
    */
-  float LINF(const arma::mat& data,
+  double LINF(const arma::mat& data,
     const size_t i,
     const size_t j) const;
 
@@ -306,7 +306,7 @@ class KMedoids {
    * 
    * @returns The cosine distance between points i and j
    */
-  float cos(const arma::mat& data,
+  double cos(const arma::mat& data,
     const size_t i,
     const size_t j) const;
 
@@ -320,7 +320,7 @@ class KMedoids {
    * 
    * @returns The Manhattan distance between points i and j
    */
-  float manhattan(const arma::mat& data,
+  double manhattan(const arma::mat& data,
     const size_t i,
     const size_t j) const;
 
@@ -356,7 +356,7 @@ class KMedoids {
   arma::urowvec medoidIndicesFinal;
 
   /// Function pointer to the loss function to use
-  float (KMedoids::*lossFn)(
+  double (KMedoids::*lossFn)(
     const arma::mat& data,
     const size_t i,
     const size_t j)
@@ -371,11 +371,11 @@ class KMedoids {
   /// Governs the error rate of each SWAP step in BanditPAM
   size_t swapConfidence;
 
-  /// Used for floatcomparisons, primarily number of "arms" remaining
-  const float precision = 0.001;
+  /// Used for doublecomparisons, primarily number of "arms" remaining
+  const double precision = 0.001;
 
   /// Contains the average loss at the last step of the algorithm
-  float averageLoss;
+  double averageLoss;
 
   /// Number of points to sample per reference batch
   size_t batchSize = 100;

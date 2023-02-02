@@ -44,16 +44,16 @@ void FastPAM1::buildFastPAM1(
   size_t N = data.n_cols;
   arma::rowvec estimates(N, arma::fill::zeros);
   arma::rowvec bestDistances(N);
-  bestDistances.fill(std::numeric_limits<float>::infinity());
+  bestDistances.fill(std::numeric_limits<double>::infinity());
   arma::rowvec sigma(N);
-  float minDistance = std::numeric_limits<float>::infinity();
+  double minDistance = std::numeric_limits<double>::infinity();
   int best = 0;
-  float total = 0;
-  float cost = 0;
+  double total = 0;
+  double cost = 0;
 
   // TODO(@motiwari): pragma omp parallel for?
   for (size_t k = 0; k < nMedoids; k++) {
-    minDistance = std::numeric_limits<float>::infinity();
+    minDistance = std::numeric_limits<double>::infinity();
     best = 0;
     // fixes a base datapoint
     // TODO(@motiwari): pragma omp parallel for?
@@ -92,8 +92,8 @@ void FastPAM1::swapFastPAM1(
   arma::urowvec* medoidIndices,
   arma::urowvec* assignments
 ) {
-  float bestChange = 0;
-  float minDistance = std::numeric_limits<float>::infinity();
+  double bestChange = 0;
+  double minDistance = std::numeric_limits<double>::infinity();
   size_t swapIn = 0;
   size_t medoidToSwap = 0;
   size_t N = data.n_cols;
@@ -113,8 +113,8 @@ void FastPAM1::swapFastPAM1(
     assignments,
     swapPerformed);
 
-  float di = 0;
-  float dij = 0;
+  double di = 0;
+  double dij = 0;
 
   while (swapPerformed && iter < maxIter) {
     iter++;

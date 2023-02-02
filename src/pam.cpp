@@ -41,14 +41,14 @@ void PAM::buildPAM(
   size_t N = data.n_cols;
   arma::rowvec estimates(N, arma::fill::zeros);
   arma::rowvec bestDistances(N);
-  bestDistances.fill(std::numeric_limits<float>::infinity());
+  bestDistances.fill(std::numeric_limits<double>::infinity());
   for (size_t k = 0; k < nMedoids; k++) {
-    float minDistance = std::numeric_limits<float>::infinity();
+    double minDistance = std::numeric_limits<double>::infinity();
     size_t best = 0;
     for (size_t i = 0; i < data.n_cols; i++) {
-      float total = 0;
+      double total = 0;
       for (size_t j = 0; j < data.n_cols; j++) {
-        float cost = (this->*lossFn)(data, i, j);
+        double cost = (this->*lossFn)(data, i, j);
         // compares this with the cached best distance
         if (bestDistances(j) < cost) {
           cost = bestDistances(j);
@@ -64,7 +64,7 @@ void PAM::buildPAM(
 
     // update the medoid assignment and best_distance for this datapoint
     for (size_t l = 0; l < N; l++) {
-      float cost = (this->*lossFn)(data, l, (*medoidIndices)(k));
+      double cost = (this->*lossFn)(data, l, (*medoidIndices)(k));
       if (cost < bestDistances(l)) {
         bestDistances(l) = cost;
       }
@@ -76,7 +76,7 @@ void PAM::swapPAM(
   const arma::mat& data,
   arma::urowvec* medoidIndices,
   arma::urowvec* assignments) {
-  float minDistance = std::numeric_limits<float>::infinity();
+  double minDistance = std::numeric_limits<double>::infinity();
   size_t best = 0;
   size_t medoidToSwap = 0;
   size_t N = data.n_cols;
@@ -92,10 +92,10 @@ void PAM::swapPAM(
 
   for (size_t k = 0; k < nMedoids; k++) {
     for (size_t i = 0; i < data.n_cols; i++) {
-      float total = 0;
+      double total = 0;
       for (size_t j = 0; j < data.n_cols; j++) {
         // compute distance between base point and every other datapoint
-        float cost = (this->*lossFn)(data, i, j);
+        double cost = (this->*lossFn)(data, i, j);
         // if x_j is NOT assigned to k: compares this with
         //   the cached best distance
         // if x_j is assigned to k: compares this with
